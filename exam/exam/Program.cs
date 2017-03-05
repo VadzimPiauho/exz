@@ -16,9 +16,9 @@ namespace exam
                 manager.AddDispether();
                 manager.Move();
             }
-            catch
+            catch (Exception e)
             {
-
+                Console.WriteLine(e.Message);
             }
         }
     }

@@ -26,6 +26,10 @@ namespace exam
         }
         public void Move()
         {
+            if (Dispatcher.Count<2)
+            {
+                throw new Exception("Диспетчеров меньше 2-х");
+            }
 
         }
     }

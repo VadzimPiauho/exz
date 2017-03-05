@@ -20,5 +20,7 @@ namespace exam
         {
             throw new Exception("Самолет не набрал высоту");
         }
+
+
     }
 }

@@ -21,7 +21,7 @@ namespace exam
             dispatcher dispatcher = new dispatcher("Dfcz", rand.Next(-200, 200));
             //подписывается на событие
 
-            //добовляется в лист
+            //добовляется в лист диспетчер
             Dispatcher.Add(dispatcher);
         }
         public void Move()
@@ -30,7 +30,15 @@ namespace exam
             {
                 throw new Exception("Диспетчеров меньше 2-х");
             }
-
+            ConsoleKeyInfo Symbol = Console.ReadKey();
+            if (Symbol.Key == ConsoleKey.DownArrow || Symbol.Key == ConsoleKey.UpArrow)
+            {
+                airplane.UppHight(Symbol);
+            }
+            if (Symbol.Key == ConsoleKey.LeftArrow || Symbol.Key == ConsoleKey.RightArrow)
+            {
+                airplane.UppSpeed(Symbol);
+            }
         }
     }
 }

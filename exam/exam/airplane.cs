@@ -8,17 +8,26 @@ namespace exam
 {
     class airplane
     {
-        private int Speed {get;set;}
-        public int Hight { get; set; }
+        private int Speed { get; set; } = 0;
+        public int Hight { get; set; } = 0;
 
         public void UppSpeed(ConsoleKeyInfo Symbol)
         {
-            if (((Symbol.Modifiers & ConsoleModifiers.Shift) != 0)&& Symbol.Key==ConsoleKey.) Console.Write("SHIFT+");
-            if ((Symbol.Key==ConsoleKey.DownArrow)) Console.Write(Symbol.Key);
+            if (((Symbol.Modifiers & ConsoleModifiers.Shift) == 0) && Symbol.Key == ConsoleKey.LeftArrow) Speed -= 50;
+            if (((Symbol.Modifiers & ConsoleModifiers.Shift) == 0) && Symbol.Key == ConsoleKey.RightArrow) Speed += 50;
+            if (((Symbol.Modifiers & ConsoleModifiers.Shift) != 0) && Symbol.Key == ConsoleKey.LeftArrow) Speed -= 150;
+            if (((Symbol.Modifiers & ConsoleModifiers.Shift) != 0) && Symbol.Key == ConsoleKey.RightArrow) Speed += 150;
+        }
+        public void UppHight(ConsoleKeyInfo Symbol)
+        {
+            if (((Symbol.Modifiers & ConsoleModifiers.Shift) == 0) && Symbol.Key == ConsoleKey.DownArrow) Hight -= 250;
+            if (((Symbol.Modifiers & ConsoleModifiers.Shift) == 0) && Symbol.Key == ConsoleKey.UpArrow) Hight += 250;
+            if (((Symbol.Modifiers & ConsoleModifiers.Shift) != 0) && Symbol.Key == ConsoleKey.DownArrow) Hight -= 500;
+            if (((Symbol.Modifiers & ConsoleModifiers.Shift) != 0) && Symbol.Key == ConsoleKey.UpArrow) Hight += 500;
         }
 
         public event EventHandler AirplaneMoved;
-        public void Moved()
+        public void Move()
         {
             if (AirplaneMoved != null)
             {

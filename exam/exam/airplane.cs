@@ -11,9 +11,10 @@ namespace exam
         private int Speed {get;set;}
         public int Hight { get; set; }
 
-        public void UppSpeed()
+        public void UppSpeed(ConsoleKeyInfo Symbol)
         {
-
+            if (((Symbol.Modifiers & ConsoleModifiers.Shift) != 0)&& Symbol.Key==ConsoleKey.) Console.Write("SHIFT+");
+            if ((Symbol.Key==ConsoleKey.DownArrow)) Console.Write(Symbol.Key);
         }
 
         public event EventHandler AirplaneMoved;
@@ -26,11 +27,11 @@ namespace exam
         }
     }
 }
-
+//ConsoleKeyInfo Symbol;
 //Symbol = Console.ReadKey();
 //                Console.WriteLine();
 //                Console.Clear();
-//                //if ((Symbol.Modifiers & ConsoleModifiers.Shift) != 0) Console.Write("SHIFT+");
-//                //if ((Symbol.Key==ConsoleKey.DownArrow)) Console.Write(Symbol.Key);
+//if ((Symbol.Modifiers & ConsoleModifiers.Shift) != 0) Console.Write("SHIFT+");
+//if ((Symbol.Key==ConsoleKey.DownArrow)) Console.Write(Symbol.Key);
 
 //                Console.WriteLine(Symbol.Key);

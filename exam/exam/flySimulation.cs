@@ -9,6 +9,7 @@ namespace exam
 {
     class flySimulation
     {
+        private int PenaltyPointsFinale { get; set; } = 0;
         ConsoleKeyInfo Symbol;
         bool go_onSimulation = true;
         Random rand = new Random();
@@ -57,13 +58,32 @@ namespace exam
                 //    go_onSimulation = false;
                 //    return;
                 //}
-                if (airplane.Speed == 0 && airplane.Hight == 0)
+                
+                airplane.Move(Symbol);
+                if (airplane.Speed >= 50 && airplane.Hight == 0)
                 {
+                    EndFly();
                     continue;
                 }
-                airplane.Move(Symbol);
                 Console.WriteLine("************************************************");
             }
+        }
+
+        private void EndFly()
+        {
+            foreach (var item in Dispatcher)
+            {
+                PenaltyPointsFinale += item.PenaltyPoints;
+            }
+            if (airplane.TaskSimulation==false)
+            {
+                throw new Exception($"Симуляция завершена, штрафное количество очков равно {PenaltyPointsFinale}, задача достичь максимальной скорости не выполнена");
+            }
+            if (airplane.TaskSimulation == true)
+            {
+                throw new Exception($"Симуляция завершена, штрафное количество очков равно {PenaltyPointsFinale}, задача достичь максимальной скорости выполнена");
+            }
+
         }
     }
 }

@@ -11,7 +11,8 @@ namespace exam
     {
         private string Name;
         private int WatherCorrect;
-        private int PenaltyPoints { get; set; } = 0;
+        public int PenaltyPoints { get; set; } = 0;
+        private int CountDispatcherMessag { get; set; } = 0;
         public dispatcher(string Name,int WatherCorrect)
         {
             this.Name = Name;
@@ -22,9 +23,28 @@ namespace exam
         {
             airplane obj1 = (airplane)obj;
 
+            if (/*(obj1.Speed==0 && obj1.Hight>0)|| (obj1.Speed > 0 && obj1.Hight == 0)||*/ (obj1.Speed < 0 || obj1.Hight < 0) || (obj1.Speed == 0 && obj1.Hight == 0))
+            {
+                throw new Exception("Самолет разбился");
+            }
+            if (CountDispatcherMessag>=1)
+            {
+                if (((7 * obj1.Speed - WatherCorrect)- obj1.Hight)>=300&& ((7 * obj1.Speed - WatherCorrect) - obj1.Hight) < 600)
+                {
+                    PenaltyPoints += 25;
+                }
+                if (((7 * obj1.Speed - WatherCorrect) - obj1.Hight) >= 600 && ((7 * obj1.Speed - WatherCorrect) - obj1.Hight) <= 1000)
+                {
+                    PenaltyPoints += 50;
+                }
+                if (((7 * obj1.Speed - WatherCorrect) - obj1.Hight) >1000 )
+                {
+                    throw new Exception("Самолет разбился,разница рекомендуемой и текущей высоты превысила 1000");
+                }
+            }
             if (PenaltyPoints >= 1000)
             {
-                throw new Exception("Непригоден к полетам");
+                throw new Exception("Непригоден к полетам, штрафные очки превысили 1000");
             }
             if (obj1.Speed > 1000)
             {
@@ -35,13 +55,9 @@ namespace exam
             if (obj1.Speed >= 50)
             {
                 Console.WriteLine($"Рекомендуемая высота от {Name} равна = {7 * obj1.Speed - WatherCorrect}");
+                CountDispatcherMessag++;
             }
             // Thread.Sleep(3000);
-            if ((obj1.Speed==0 && obj1.Hight>0)|| (obj1.Speed > 0 && obj1.Hight == 0)|| obj1.Speed<0|| obj1.Hight<0)
-            {
-                throw new Exception("Самолет разбился");
-            }
-            //throw new Exception("Самолет не набрал высоту");
         }
     }
 }

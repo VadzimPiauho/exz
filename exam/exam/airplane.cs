@@ -12,14 +12,9 @@ namespace exam
         public event EventHandler AirplaneMoved;
         public int Speed { get; set; } = 0;
         public int Hight { get; set; } = 0;
-
+        public bool TaskSimulation { get; set; } = false;
         public void Move(ConsoleKeyInfo Symbol)
         {
-            //if (Hight >= 1000)
-            //{
-            //    Console.WriteLine("Вы находитесь на земле");
-            //    return;
-            //}
             if (((Symbol.Modifiers & ConsoleModifiers.Shift) == 0) && Symbol.Key == ConsoleKey.LeftArrow)
             {
                 Speed -= 50;
@@ -66,7 +61,10 @@ namespace exam
                 Hight += 500;
                 Console.WriteLine("Высота увеличена на 500 м");
             }
-
+            if (Speed >= 1000)
+            {
+                TaskSimulation = true;
+            }
             Console.WriteLine($"Текущая высота полета {Hight} скорость {Speed} км/ч");
             
                 if (AirplaneMoved != null)

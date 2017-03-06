@@ -28,10 +28,6 @@ namespace exam
 
                 if (((Symbol.Modifiers & ConsoleModifiers.Shift) == 0) && Symbol.Key == ConsoleKey.RightArrow)
             {
-                if ((Speed + 50) >= 1000)
-                {
-                    Console.WriteLine($"Текущая высота полета {Hight} скорость {Speed} км/ч");
-                }
                 Speed += 50;
                 Console.WriteLine("Скорость полета повышена на 50 км/ч"); 
             }
@@ -115,7 +111,13 @@ namespace exam
                     Console.WriteLine($"Текущая высота полета {Hight} скорость {Speed} км/ч");
                     break;
                 }
-                //if (((Symbol.Modifiers & ConsoleModifiers.Shift) != 0) && Symbol.Key == ConsoleKey.RightArrow) Speed += 150;                
+                if (((Symbol.Modifiers & ConsoleModifiers.Shift) != 0) && Symbol.Key == ConsoleKey.RightArrow)
+                {
+                    Speed += 150;
+                    Console.WriteLine("Скорость полета повышена на 150 км/ч");
+                    Console.WriteLine($"Текущая высота полета {Hight} скорость {Speed} км/ч");
+                    break;
+                }
             }
             
         }

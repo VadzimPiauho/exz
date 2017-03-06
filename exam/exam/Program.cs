@@ -15,7 +15,7 @@ namespace exam
 
         static void Main(string[] args)
         {
-            bool go_on = true;           
+            bool go_on = true;
             string NameDispether;
             try
             {
@@ -24,7 +24,6 @@ namespace exam
                 {
                     Console.Clear();
                     Console.WriteLine("****************************Меню*******************************");
-
                     Console.WriteLine("1 - Добавить диспетчера");
                     Console.WriteLine("2 - Начать симуляцию");
                     Console.WriteLine("0 - Выход из программы");
@@ -40,16 +39,8 @@ namespace exam
                         case '2':
                             manager.Move();
                             break;
-                        case '3':
-                            
-                            endCase();
-                            break;
-                        case '4':
-                            
-                            endCase();
-                            break;
-                        case '5':
-                            endCase();
+                        //case '3':
+                        //    endCase();
                             break;
                         case '0':
                             go_on = false;

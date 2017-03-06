@@ -72,17 +72,11 @@ namespace exam
             }
 
             Console.WriteLine($"Текущая высота полета {Hight} скорость {Speed} км/ч");
-            if (Speed>=50)
-            {
+            
                 if (AirplaneMoved != null)
                 {
                     AirplaneMoved(this, EventArgs.Empty);
                 }
-            }
-            if (Speed <= 0)
-            {
-                throw new Exception("Самолет разбился");
-            }
         }
 
         internal void StartFly()

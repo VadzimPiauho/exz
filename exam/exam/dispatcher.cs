@@ -20,8 +20,10 @@ namespace exam
         public void OnAirplaneMove(object obj, EventArgs arg)
         {
             airplane obj1 = (airplane)obj;
-
-            Console.WriteLine($"Рекомендуемая высота от {Name} равна = {7* obj1.Speed- WatherCorrect}");
+            if (obj1.Speed >= 50)
+            {
+                Console.WriteLine($"Рекомендуемая высота от {Name} равна = {7 * obj1.Speed - WatherCorrect}");
+            }
             // Thread.Sleep(3000);
             if ((obj1.Speed==0 && obj1.Hight>0)|| (obj1.Speed > 0 && obj1.Hight == 0)|| obj1.Speed<0|| obj1.Hight<0)
             {

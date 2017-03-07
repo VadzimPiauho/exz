@@ -59,11 +59,11 @@ namespace exam
                 //    return;
                 //}
                 airplane.Move(Symbol);
-                //if (airplane.Speed >= 50 && airplane.Hight == 0)
-                //{
-                //    EndFly();
-                //    continue;
-                //}
+                if (airplane.Speed == 50 && airplane.Hight == 0)
+                {
+                    EndFly();
+                    continue;
+                }
                 Console.WriteLine("************************************************");
             }
         }

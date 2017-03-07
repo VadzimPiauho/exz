@@ -41,7 +41,7 @@ namespace exam
                             break;
                         //case '3':
                         //    endCase();
-                            break;
+                          //  break;
                         case '0':
                             go_on = false;
                             break;
@@ -57,11 +57,11 @@ namespace exam
                 Console.WriteLine(e.Message);
             }
         }
-        private static void endCase()
-        {
-            Console.WriteLine("Нажмите любую клавишу...");
-            _getch();
-        }
+        //private static void endCase()
+        //{
+        //    Console.WriteLine("Нажмите любую клавишу...");
+        //    _getch();
+        //}
     }
 }
 //gluckodrom @list.ru

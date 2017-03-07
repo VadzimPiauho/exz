@@ -11,6 +11,8 @@ namespace exam
     {
         private string Name;
         private int WatherCorrect;
+        private int OldRecommendedHight;
+        private int NewRecommendedHight;
         private static int limitPenaltyPoints=1000;
         public int PenaltyPoints { get; set; } = 0;
         private int CountDispatcherMessag { get; set; } = 0;
@@ -22,23 +24,25 @@ namespace exam
 
         public void OnAirplaneMove(object obj, EventArgs arg)
         {
+            
             airplane obj1 = (airplane)obj;
+            NewRecommendedHight = 7 * obj1.Speed - WatherCorrect;
 
-            if (/*(obj1.Speed == 0 && obj1.Hight > 0) || (obj1.Speed > 0 && obj1.Hight == 0) || (obj1.Speed < 0 || obj1.Hight < 0) ||*/ (obj1.Speed == 0 && obj1.Hight == 0))
+            if ((obj1.Speed == 0 && obj1.Hight > 0) || /*(obj1.Speed > 0 && obj1.Hight == 0) ||*/ (obj1.Speed < 0 || obj1.Hight < 0) || (obj1.Speed == 0 && obj1.Hight == 0))
             {
                 throw new Exception("Самолет разбился");
             }
             if (CountDispatcherMessag>=1)
             {
-                if (((7 * obj1.Speed - WatherCorrect)- obj1.Hight)>=300&& ((7 * obj1.Speed - WatherCorrect) - obj1.Hight) < 600)
+                if (((OldRecommendedHight - WatherCorrect)- obj1.Hight)>=300&& (OldRecommendedHight - obj1.Hight) < 600)
                 {
                     PenaltyPoints += 25;
                 }
-                if (((7 * obj1.Speed - WatherCorrect) - obj1.Hight) >= 600 && ((7 * obj1.Speed - WatherCorrect) - obj1.Hight) <= limitPenaltyPoints)
+                if (((OldRecommendedHight - WatherCorrect) - obj1.Hight) >= 600 && (OldRecommendedHight - obj1.Hight) <= limitPenaltyPoints)
                 {
                     PenaltyPoints += 50;
                 }
-                if (((7 * obj1.Speed - WatherCorrect) - obj1.Hight) > limitPenaltyPoints)
+                if ((OldRecommendedHight - obj1.Hight) > limitPenaltyPoints)
                 {
                     throw new Exception("Самолет разбился,разница рекомендуемой и текущей высоты превысила 1000");
                 }
@@ -55,7 +59,8 @@ namespace exam
             }
             if (obj1.Speed >= 50)
             {
-                Console.WriteLine($"Рекомендуемая высота от {Name} равна = {7 * obj1.Speed - WatherCorrect}");
+                Console.WriteLine($"Рекомендуемая высота от {Name} равна = {NewRecommendedHight}");
+                OldRecommendedHight = NewRecommendedHight;
                 CountDispatcherMessag++;
             }
             // Thread.Sleep(3000);

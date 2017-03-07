@@ -11,6 +11,7 @@ namespace exam
     {
         private string Name;
         private int WatherCorrect;
+        private static int limitPenaltyPoints=1000;
         public int PenaltyPoints { get; set; } = 0;
         private int CountDispatcherMessag { get; set; } = 0;
         public dispatcher(string Name,int WatherCorrect)
@@ -23,7 +24,7 @@ namespace exam
         {
             airplane obj1 = (airplane)obj;
 
-            if (/*(obj1.Speed==0 && obj1.Hight>0)|| (obj1.Speed > 0 && obj1.Hight == 0)||*/ (obj1.Speed < 0 || obj1.Hight < 0) || (obj1.Speed == 0 && obj1.Hight == 0))
+            if (/*(obj1.Speed == 0 && obj1.Hight > 0) || (obj1.Speed > 0 && obj1.Hight == 0) || (obj1.Speed < 0 || obj1.Hight < 0) ||*/ (obj1.Speed == 0 && obj1.Hight == 0))
             {
                 throw new Exception("Самолет разбился");
             }
@@ -33,20 +34,20 @@ namespace exam
                 {
                     PenaltyPoints += 25;
                 }
-                if (((7 * obj1.Speed - WatherCorrect) - obj1.Hight) >= 600 && ((7 * obj1.Speed - WatherCorrect) - obj1.Hight) <= 1000)
+                if (((7 * obj1.Speed - WatherCorrect) - obj1.Hight) >= 600 && ((7 * obj1.Speed - WatherCorrect) - obj1.Hight) <= limitPenaltyPoints)
                 {
                     PenaltyPoints += 50;
                 }
-                if (((7 * obj1.Speed - WatherCorrect) - obj1.Hight) >1000 )
+                if (((7 * obj1.Speed - WatherCorrect) - obj1.Hight) > limitPenaltyPoints)
                 {
                     throw new Exception("Самолет разбился,разница рекомендуемой и текущей высоты превысила 1000");
                 }
             }
-            if (PenaltyPoints >= 1000)
+            if (PenaltyPoints >= limitPenaltyPoints)
             {
                 throw new Exception("Непригоден к полетам, штрафные очки превысили 1000");
             }
-            if (obj1.Speed > 1000)
+            if (obj1.Speed > limitPenaltyPoints)
             {
                 Console.WriteLine($"Немедленно снизте скорость, диспетчер {Name}");
                 PenaltyPoints += 100;

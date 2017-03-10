@@ -9,7 +9,7 @@ namespace exam
 {
     class dispatcher
     {
-        private string Name;
+        public string Name;
         private int WatherCorrect;
         private int OldRecommendedHight;
         private int NewRecommendedHight;

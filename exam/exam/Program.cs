@@ -16,7 +16,6 @@ namespace exam
         static void Main(string[] args)
         {
             bool go_on = true;
-            string NameDispether;
             try
             {
                 var manager = new flySimulation();
@@ -32,9 +31,7 @@ namespace exam
                     switch (_getch())
                     {
                         case '1':
-                            Console.WriteLine("Введите имя диспетчера");
-                            NameDispether = Console.ReadLine();
-                            manager.AddDispether(NameDispether);
+                            manager.AddDispether();
                             break;
                         case '2':
                             manager.Move();

@@ -19,14 +19,16 @@ namespace exam
         {
             airplane = new airplane();
         }
-        public void AddDispether(string NameDispether)
+        public void AddDispether()
         {
-            if (Dispatcher.Count==2)
-            {
-                Console.WriteLine("Два диспетчера уже имеется в системе");
-                Thread.Sleep(1000);
-                return;
-            }
+            Console.WriteLine("Введите имя диспетчера");
+            string NameDispether = Console.ReadLine();
+            //if (Dispatcher.Count==2)
+            //{
+            //    Console.WriteLine("Два диспетчера уже имеется в системе");
+            //    Thread.Sleep(1000);
+            //    return;
+            //}
             //создается диспетчер
             dispatcher dispatcher = new dispatcher(NameDispether, rand.Next(-200, 200));
             //подписывается на событие
@@ -47,12 +49,31 @@ namespace exam
             Console.WriteLine("Скорость - изменяется клавишами-стрелками Left и Right");
             Console.WriteLine("Высота -  изменяется клавишами-стрелками Up и Down");
             //Console.WriteLine("Для экстренного выхода из симуляции нажмите F1");
-            Console.WriteLine("Для замены диспетчера нажмите F2");
-            
+            Console.WriteLine("Для удаления диспетчера нажмите F2");
+            Console.WriteLine("Для добавления диспетчера нажмите F3");
+            Console.WriteLine("*******************************************************");
             airplane.StartFly();
             while (go_onSimulation)
             {
+                Console.WriteLine("Для удаления диспетчера нажмите F2");
+                Console.WriteLine("Для добавления диспетчера нажмите F3");
                 Symbol = Console.ReadKey(true);
+                if (Symbol.Key == ConsoleKey.F3)
+                {
+                    AddDispether();
+                    continue;
+                }
+                if (Symbol.Key == ConsoleKey.F2)
+                {
+                    RemoveDispether();
+                    continue;
+                }
+                if (Dispatcher.Count < 2)
+                {
+                    Console.WriteLine("Диспетчеров меньше 2-х. Для полета добавьте диспетчера");
+                    Thread.Sleep(1000);
+                    continue;
+                }
                 //if (Symbol.Key == ConsoleKey.F1)
                 //{
                 //    go_onSimulation = false;
@@ -65,6 +86,38 @@ namespace exam
                     continue;
                 }
                 Console.WriteLine("************************************************");
+            }
+        }
+
+        private void RemoveDispether()
+        {
+            if (Dispatcher.Count==0)
+            {
+                Console.WriteLine("Нет диспетчеров для удаления ");
+                return;
+            }
+            Console.WriteLine("Введите имя диспетчера");
+            string NameDispether = Console.ReadLine();
+            bool trueOperation = false;
+
+            foreach (var item in Dispatcher)
+            {
+                if (item.Name== NameDispether)
+                {
+                    PenaltyPointsFinale += item.PenaltyPoints;
+                    airplane.AirplaneMoved -= item.OnAirplaneMove;
+                    Dispatcher.Remove(item);
+                    trueOperation = true;
+                    break;
+                }
+            }
+            if (trueOperation==true)
+            {
+                Console.WriteLine("Диспетчер с таким именем удален");
+            }
+            else
+            {
+                Console.WriteLine("Диспетчера с таким именем не найдено");
             }
         }
 
